@@ -23,9 +23,9 @@ impl ThinBufferMethods for NagaThinBuffer {
 
 
 #[derive(Clone)]
-struct MyBackend;
+struct NagaBackend;
 
-impl WriteBackendMethods for MyBackend {
+impl WriteBackendMethods for NagaBackend {
     type Module = Vec<u32>;
 
     type TargetMachine = ();
@@ -114,7 +114,7 @@ impl WriteBackendMethods for MyBackend {
     }
 }
 
-impl ExtraBackendMethods for MyBackend {
+impl ExtraBackendMethods for NagaBackend {
     fn codegen_allocator<'tcx>(
         &self,
         tcx: rustc_middle::ty::TyCtxt<'tcx>,
@@ -143,7 +143,7 @@ impl ExtraBackendMethods for MyBackend {
     }
 }
 
-impl CodegenBackend for MyBackend {
+impl CodegenBackend for NagaBackend {
     fn locale_resource(&self) -> &'static str {
         todo!()
     }
@@ -190,5 +190,5 @@ impl CodegenBackend for MyBackend {
 
 #[no_mangle]
 pub fn __rustc_codegen_backend() -> Box<dyn CodegenBackend> {
-    Box::new(MyBackend)
+    Box::new(NagaBackend)
 }
